@@ -7,7 +7,7 @@ post_excerpt: >
   and Puppet.
 layout: post
 permalink: >
-  http://codingbee.net/tutorials/ansible/comparison-between-ansible-and-puppet
+  https://codingbee.net/tutorials/ansible/comparison-between-ansible-and-puppet
 published: true
 post_date: 2018-08-12 09:22:01
 ---
@@ -20,4 +20,4 @@ Key differences between Ansible and Puppet:
 	<li>puppet code is written in it's own custom language, i.e. Domain specific   Language (DSL). However ansible code is written in yaml syntax.</li>
 </ul>
 
-This is just a quick summary of the two tools....
+This is just a quick summary of the two tools........
