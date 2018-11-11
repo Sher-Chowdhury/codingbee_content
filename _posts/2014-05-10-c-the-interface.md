@@ -1,0 +1,357 @@
+---
+ID: 46
+post_title: 'c# &#8211; The Interface'
+author: sher
+post_excerpt: ""
+layout: post
+permalink: >
+  https://codingbee.net/tutorials/c/c-the-interface
+published: true
+post_date: 2014-05-10 00:00:00
+---
+We previously came across the concept of inheritance, which is where a child class (implicitly) inherits the properties and methods from it's parent class.
+
+However what if you don't want a class to inherit methods and properties, but we do want class to have certain members (properties and methods) with particular names. That's where "interfaces" comes in.
+
+If you want to create a collection of classes and you want them all to have methods of certain names (although the content of the methods can be completely different), then you use interfaces.
+
+A common example of where interfaces comes in handy is when you create a class (e.g. called DBclass) that's designed to interact with a db and perform crud operations. For this class you might have a method called "Read()" for retrieving data from db, and another method called "Write()" for writing data to db.
+
+Now lets says you have another class (e.g. called XMLclass), which this time is designed to interact with an xml file, and perform crud operation. Both these classes do the same job, the only difference being that they have different data sources, one is a db, and the other is an xml file. So it would be best practice for consistency purposes that both these classes have methods of the same names. Hence XMLclass should also contain methods called Read() and Write().
+
+To make sure this standard and consistency gets enforced, we create an interface. An interface is basically a template (aka specification) that we use to create classes from. These classes that get created from a interface, must contain the methods an properties that have the same name as those specified in the interface.
+
+The interface works on the basis of "minimum-requirements". This means that a class can have many more methods/properties specific to the class, but still comply with the interface as long as it includes the methods and properties that have names that match with those listed in the interface.
+
+Here's an example, in this example we have a class called "Transactions", and this class is designed to comply with an interface called "Itransactions":
+
+[csharp]
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace InterfaceApplication
+{
+
+	// Here we define the interface using the &quot;interface&quot; keyword
+   public interface ITransactions
+   {
+      // Here we have defined a property called &quot;country&quot;. This means that all classes that conforms
+	  // to this interface, must also have a string property called country (with read/write enabled)
+	  string country {get; set;}
+
+      // Here we say that all classes that are created to conform with this interface, must contain at least 2 methods.
+// one of these methods must have the name &quot;showTransaction&quot; (which has a void output parameter) and another
+	  // method with the name &quot;getAmount&quot; (which has a double output parameter)
+	  // note: due to purpose of the interface, the interface, the names of the methods has to be, and not 
+// what task the method actually performs. That info is defined within the complying class. 
+      void showTransaction();
+      double getAmount();
+   }
+   // Note, you don't prefix any of the above items with &quot;public&quot;, that is the default anyway, and you
+   // cannot change this either.
+
+   // Here we are creating a new class called &quot;Transactions&quot;, and on the
+   // first line we have specified that this class must conform to the
+   // ITransactions interface.
+   public class Transaction : ITransactions
+   {
+		// here we declared the &quot;country&quot; in order to comply with the interface's requirements.
+		public string country {get; set;}
+
+		// The interface, defines what is essentially &quot;minimum requirements&quot;. That means
+		// that we can add extra properties/methods to our class on top of those that we
+		// must include according to the interface. Here we have added 3 additional
+		// properties:
+		public string TCode{get; set;}
+		public string Date{get; set;}
+		public double Amount{get; set;}
+
+	    // here is the constructor.
+		public Transaction(string c, string d, double a)
+		{
+		this.TCode = c;
+		this.Date = d;
+		this.Amount = a;
+		this.country = &quot;England&quot;;
+		}
+
+		// Here we created a method called &quot;getAmount&quot; in accordance with
+		// the interface's requirements.
+		public double getAmount()
+		{
+		return Amount;		// The content of the method doesn't matter. As long as method by this
+							// name exists.
+		}
+
+		// Here we created a method called &quot;showTransaction&quot; in accordance with the interface's
+		// requirements.
+		public void showTransaction()
+		{
+		Console.WriteLine(&quot;Transaction: {0}&quot;, TCode);
+		Console.WriteLine(&quot;Date: {0}&quot;, Date);
+		Console.WriteLine(&quot;Amount: {0}&quot;, getAmount());
+
+		}
+
+		// This is an additional method that the interface doesn't require. However
+		// we haved include this as it is a method we want in this class.
+		public void CountryOfTransaction()
+		{
+			Console.WriteLine(&quot;This transaction took place in &quot; + country);
+		}
+
+   }
+
+   class Program
+   {
+      static void Main(string[] args)
+      {
+         Transaction t1 = new Transaction(&quot;002&quot;, &quot;9/10/2012&quot;, 451900.00);
+         t1.showTransaction();
+		 t1.CountryOfTransaction();
+      }
+   }
+}
+[/csharp]
+
+This outputs:
+
+<img alt="" src="data:image/png;base64,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" />
+
+[csharp]
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace InterfaceDemo
+{
+    // Here we have defined the interface. On this occasion
+    // we are saying that all complying class must have at least
+    // 2 methods, where 2 of those methods have the names &quot;Read&quot; and 
+    // &quot;Write&quot;
+    public interface DataSourceInteractionTemplate
+    {
+
+        string Read();
+
+        void Write(object objectdata);
+    }
+
+
+
+    public class DBInteraction : DataSourceInteractionTemplate
+    {
+
+        // this is an additional property. 
+        public string HelloDBMessage { get; set; }
+
+        // Here we created a method called &quot;Read&quot; in accordance with 
+        // the DataSourceInteractionTemplate interface
+        public string Read()
+        {
+            Console.WriteLine(&quot;reading data from database&quot;);
+            return &quot;test&quot;;
+        }
+
+
+        // Here we created a method called &quot;Write&quot; in accordance with 
+        // the DataSourceInteractionTemplate interface
+        public void Write(object InputData)
+        {
+            Console.WriteLine(&quot;writing data to database&quot;);
+        }
+
+        // this is an additional method. 
+        public void HelloDBMethod()
+        {
+            this.HelloDBMessage = &quot;Hello Database&quot;;
+            Console.WriteLine(this.HelloDBMessage);
+        }
+
+    }
+
+
+    public class XMLInteraction : DataSourceInteractionTemplate
+    {
+
+        // this is an additional property. 
+        public string HelloXMLMessage { get; set; }
+
+        // Here we created a method called &quot;Read&quot; in accordance with 
+        // the DataSourceInteractionTemplate interface
+        public string Read()
+        {
+            Console.WriteLine(&quot;reading data from xml file&quot;);
+            return &quot;test&quot;;
+        }
+
+        // Here we created a method called &quot;Write&quot; in accordance with 
+        // the DataSourceInteractionTemplate interface
+        public void Write(object InputData)
+        {
+            Console.WriteLine(&quot;writing data to xml&quot;);
+        }
+
+        // this is an additional method. 
+        public void HelloXMLMethod()
+        {
+            this.HelloXMLMessage = &quot;Hello XML&quot;;
+            Console.WriteLine(this.HelloXMLMessage);
+        }
+        
+    }
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DBInteraction DBobject = new DBInteraction();
+            DBobject.Read();
+            DBobject.Write(null);
+            DBobject.HelloDBMethod();
+
+            XMLInteraction XMLobject = new XMLInteraction();
+            XMLobject.Read();
+            XMLobject.Write(null);
+            XMLobject.HelloXMLMethod();
+
+
+
+        }
+    }
+}
+
+[/csharp]
+
+The above will output:
+
+<img alt="" src="data:image/png;base64,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" />
+
+So far we have seen that a interface gives some high-level rules that complying class must follow. Due to the nature of an interface, you cannot instantiate a object from a interface, since interface isn't really a class. However, you can convert an existing object (that got instantiated by a complying class) to belong to that interface. When you do this, the object can still access it's original method/properties, but only those that are named in the interface. 
+
+The cool advantage of this is that you can have an object that belongs to "DataSourceInteractionTemplate" interface, and use it's read/write methods, without knowing whether you are interacting with a db,xml file, or something else!
+
+Here's an example:  
+   
+[csharp]
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace InterfaceDemo
+{
+    // Here we have defined the interface. On this occasion
+    // we are saying that all complying class must have at least
+    // 2 methods, where 2 of those methods have the names &quot;Read&quot; and 
+    // &quot;Write&quot;
+    public interface DataSourceInteractionTemplate
+    {
+
+        string Read();
+
+        void Write(object objectdata);
+    }
+
+
+
+    public class DBInteraction : DataSourceInteractionTemplate
+    {
+
+        // this is an additional property. 
+        public string HelloDBMessage { get; set; }
+
+        // Here we created a method called &quot;Read&quot; in accordance with 
+        // the DataSourceInteractionTemplate interface
+        public string Read()
+        {
+            Console.WriteLine(&quot;reading data from database&quot;);
+            return &quot;test&quot;;
+        }
+
+
+        // Here we created a method called &quot;Write&quot; in accordance with 
+        // the DataSourceInteractionTemplate interface
+        public void Write(object InputData)
+        {
+            Console.WriteLine(&quot;writing data to database&quot;);
+        }
+
+        // this is an additional method. 
+        public void HelloDBMethod()
+        {
+            this.HelloDBMessage = &quot;Hello Database&quot;;
+            Console.WriteLine(this.HelloDBMessage);
+        }
+
+    }
+
+
+    public class XMLInteraction : DataSourceInteractionTemplate
+    {
+
+        // this is an additional property. 
+        public string HelloXMLMessage { get; set; }
+
+        // Here we created a method called &quot;Read&quot; in accordance with 
+        // the DataSourceInteractionTemplate interface
+        public string Read()
+        {
+            Console.WriteLine(&quot;reading data from xml file&quot;);
+            return &quot;test&quot;;
+        }
+
+        // Here we created a method called &quot;Write&quot; in accordance with 
+        // the DataSourceInteractionTemplate interface
+        public void Write(object InputData)
+        {
+            Console.WriteLine(&quot;writing data to xml&quot;);
+        }
+
+        // this is an additional method. 
+        public void HelloXMLMethod()
+        {
+            this.HelloXMLMessage = &quot;Hello XML&quot;;
+            Console.WriteLine(this.HelloXMLMessage);
+        }
+
+    }
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List&lt;DataSourceInteractionTemplate=> ListOfDataObjects = new List&lt;DataSourceInteractionTemplate=>();
+            
+            DBInteraction object1 = new DBInteraction();
+            ListOfDataObjects.Add(object1); // this converts object1's type from DBInteraction to DataSourceInteractionTemplate. 
+            XMLInteraction object2 = new XMLInteraction();
+            ListOfDataObjects.Add(object2); // this converts object2's type from XMLInteraction to DataSourceInteractionTemplate.
+            DBInteraction object3 = new DBInteraction();
+            ListOfDataObjects.Add(object3);
+            XMLInteraction object4 = new XMLInteraction();
+            ListOfDataObjects.Add(object4);
+
+
+            foreach (DataSourceInteractionTemplate databoject in ListOfDataObjects)
+            {
+                databoject.Read();
+                databoject.Write(null);
+                // DBobject.HelloDBMethod();   // the converted object can no longer access the class's members.  
+                // XMLobject.HelloXMLMethod(); // except for the ones named in the interface specs.  
+            }
+            
+            
+        }
+    }
+}
+[/csharp]
+
+The above shows how you can standardize interaction with many different data-sources by using interfaces. This means that objects originating from different classes are doing the right thing in the loop. This means they are behaving polymorphically.
