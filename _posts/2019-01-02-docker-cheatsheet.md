@@ -7,7 +7,7 @@ author: sher
 post_excerpt: ""
 layout: post
 permalink: >
-  http://codingbee.net/uncategorized/docker-cheatsheet
+  http://codingbee.net/tutorials/docker/docker-cheatsheet
 published: true
 post_date: 2019-01-02 12:58:21
 ---
