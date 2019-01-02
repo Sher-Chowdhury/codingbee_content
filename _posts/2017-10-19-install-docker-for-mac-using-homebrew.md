@@ -5,11 +5,10 @@ author: sher
 post_excerpt: ""
 layout: post
 permalink: >
-  https://codingbee.net/tutorials/docker/install-docker-for-mac-using-homebrew
+  http://codingbee.net/tutorials/docker/install-docker-for-mac-using-homebrew
 published: true
 post_date: 2017-10-19 17:31:04
 ---
-
 <p>Here's the command I ran:</p>
 <pre><code class="language-bash">brew install bash-completion
 brew cask install docker
