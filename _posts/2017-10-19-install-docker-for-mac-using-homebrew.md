@@ -5,10 +5,11 @@ author: sher
 post_excerpt: ""
 layout: post
 permalink: >
-  http://codingbee.net/tutorials/docker/install-docker-for-mac-using-homebrew
+  https://codingbee.net/tutorials/docker/install-docker-for-mac-using-homebrew
 published: true
 post_date: 2017-10-19 17:31:04
 ---
+
 <p>Here's the command I ran:</p>
 <pre><code class="language-bash">brew install bash-completion
 brew cask install docker
@@ -27,5 +28,5 @@ docker-machine version 0.12.2, build 9371605
 
 $ kubectl version --client
 Client Version: version.Info{Major:"1", Minor:"6", GitVersion:"v1.6.2", GitCommit:"477efc3cbe6a7effca06bd1452fa356e2201e1ee", GitTreeState:"clean", BuildDate:"2017-04-19T20:33:11Z", GoVersion:"go1.7.5", Compiler:"gc", Platform:"darwin/amd64"}</code></pre>
-<h2>Reference</h2>
+<h4>Reference</h4>
 <p><a href="https://docs.docker.com/docker-for-mac/install">Docker for Mac install</a></p>
