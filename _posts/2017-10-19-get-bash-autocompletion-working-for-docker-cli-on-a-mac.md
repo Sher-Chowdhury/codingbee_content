@@ -7,11 +7,10 @@ author: sher
 post_excerpt: ""
 layout: post
 permalink: >
-  https://codingbee.net/tutorials/docker/get-bash-autocompletion-working-for-docker-cli-on-a-mac
+  http://codingbee.net/tutorials/docker/get-bash-autocompletion-working-for-docker-cli-on-a-mac
 published: true
 post_date: 2017-10-19 16:57:07
 ---
-
 <p>First install the following formulas:</p>
 <pre><code class="language-bash">brew install bash-completion
 brew cask install docker
