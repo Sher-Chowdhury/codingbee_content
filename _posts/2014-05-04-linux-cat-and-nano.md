@@ -1,33 +1,32 @@
 ---
-ID: 8
-post_title: 'Linux &#8211; cat and nano'
-author: sher
+ID: 49
+post_title: linux-cat-and-nano
+author: admin
 post_excerpt: ""
 layout: post
-permalink: >
-  https://codingbee.net/tutorials/redhat/linux-cat-and-nano
+permalink: http://localhost:8000/?p=49
 published: true
 post_date: 2014-05-04 00:00:00
 ---
-&nbsp;
+ 
 
-<strong>Commands:</strong>
+**Commands:**
 
 cat
 
 nano         # This is a text editor. no need to learn this. vim is much better.
 
-<strong>Config files:</strong>
+**Config files:**
 
 n/a
 
-<strong>Notes:</strong>
+**Notes:**
 
 Here are some example using cat (as a text file creator rather than a file content’s outputter):
 
 example 1:
 
-$ cat &lt;&lt;EOF =>testfile     # This lets you start writing stuff, until you type EOF, after that your content gets stored in testfile.
+$ cat <<EOF =>testfile     # This lets you start writing stuff, until you type EOF, after that your content gets stored in testfile.
 
 => this is a testfile
 
@@ -37,7 +36,7 @@ $ cat &lt;&lt;EOF =>testfile     # This lets you start writing stuff, until yo
 
 example 2:
 
-$ cat &lt;&lt;EOF                      # Here the output is printed directly pack to the command line.
+$ cat <<EOF                    # Here the output is printed directly pack to the command line.
 
 => this is a testline
 
@@ -53,28 +52,28 @@ another line
 
 yet another line
 
-<strong>Related Services:</strong>
+**Related Services:**
 
 Inserttexthere
 
-&nbsp;
+ 
 
-<strong>Must survive reboot:</strong>
-
-n/a
-
-<strong>Software to install:</strong>
+**Must survive reboot:**
 
 n/a
 
-<strong>GUI tool:</strong>
+**Software to install:**
 
 n/a
 
-<strong>Book ref:</strong>
+**GUI tool:**
 
 n/a
 
-<strong>Study guide ref:</strong>
+**Book ref:**
+
+n/a
+
+**Study guide ref:**
 
 n/a
