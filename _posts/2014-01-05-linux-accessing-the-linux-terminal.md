@@ -1,11 +1,10 @@
 ---
-ID: 54
-post_title: 'Linux &#8211; Accessing the linux terminal'
-author: sher
+ID: 39
+post_title: linux-accessing-the-linux-terminal
+author: admin
 post_excerpt: ""
 layout: post
-permalink: >
-  https://codingbee.net/uncategorized/linux-accessing-the-linux-terminal
+permalink: http://localhost:8000/?p=39
 published: true
 post_date: 2014-01-05 00:00:00
 ---
@@ -22,11 +21,11 @@ Scenario 2 - Access a remote linux server's   terminal from a windows desktop m
 In most corporate workplaces, linux servers are locked away in server rooms. In these cases, you can access the server's terminal remotely by using a software called putty. Putty creates a connection to the linux server and opens up a virtual terminal. After that you can use this terminal just as if you were access the linux server directly.
 
 Useful Tip: In a corporate workplace, you may need to remotely connect to several remote linux machines. Then you might want to use a putty-addon called putty connection manager (PCM).   The cool thing thing about pcm is that it can be:
-<ul>
-	<li>used to store all your linux login credential....so that you don't have to have keep them all memorised.</li>
-	<li>used automatically log in to a linux machine, so no need to repetitively type in the username and password</li>
-	<li>lets you open up several terminals in a tabbed interface....so that you can work on multiple linux machines simultaneously</li>
-</ul>
+
+*   used to store all your linux login credential....so that you don't have to have keep them all memorised.
+*   used automatically log in to a linux machine, so no need to repetitively type in the username and password
+*   lets you open up several terminals in a tabbed interface....so that you can work on multiple linux machines simultaneously
+
 Scenario 3 -   Access a remote linux server's   terminal from a linux desktop machine
 
 If your local machine is a linux machine, then all you need to do is open a terminal (as described in scenario 1), and then use the ssh command to establish a remote linux server connection. After that you can manage the remote server as if you are accessing it directly.
